@@ -1,9 +1,9 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "Chemical Predictor (VA-CRN): Vector-Based Chemical Reaction Network Generator"
+title: "Chemical Predictor (VD-CRN): Vector-Based Chemical Reaction Network Generator"
 version: 1.0.0
 date-released: 2025-10-20
-doi: 10.5281/zenodo.pending
+doi: 10.5281/zenodo.17400683
 authors:
   - family-names: Kozub
     given-names: Pavlo
@@ -17,6 +17,6 @@ license: Apache-2.0
 keywords:
   - vector-based stoichiometry
   - chemical reaction networks
-  - VA-CRN
+  - VD-CRN
   - computational chemistry
   - EPFL
