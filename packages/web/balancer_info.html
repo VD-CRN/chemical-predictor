@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chemical Predictor Full Info (EN-UA)</title>
+    <meta http-equiv="content-type" content="text/html" charset="utf-8" />
+    <style>
+      body {font-family: system-ui, sans-serif; line-height:1.5; margin:0; padding:0;}
+      .container {display: grid; grid-template-columns: 50% 50%; margin:0; padding:0;}
+      .col {padding:20px; border-left:1px solid #ddd; box-sizing:border-box;}
+      .col:first-child {border-left:none;}
+      pre {background:#f6f6f7; padding:10px; border-radius:6px; overflow-x:auto;}
+      h2 {margin-top:0;}
+      ul {margin-top:0;}
+    </style>
+</head>
+<body>
+  <div class="container">
+    <!-- English column -->
+    <div class="col">
+      <h2><strong>Chemical Predictor</strong>: about the service and how to use it</h2>
+
+      <p><strong>What is it?</strong> <em>Chemical Predictor</em> is an online service that <strong>fully implements the vector approach</strong> to chemical equation balancing.
+      The algorithm is <strong>mathematically justified</strong> and based on <strong>matrix algebra</strong>, which makes it possible to find <u>all</u> possible unique (non-repetitive, linearly independent) balanced reactions.</p>
+
+      <h3>Main features</h3>
+      <ul>
+        <li>Unlimited number of reagents on both sides (limited only by browser/JS performance).</li>
+        <li>Unlimited number of elements (including fictional ones).</li>
+        <li>Parallel calculation of multiple reaction systems.</li>
+        <li>Search for <strong>all</strong> possible <strong>unique</strong> solutions without repetitions or linear dependence.</li>
+        <li>Support for <strong>electrochemical</strong> equations (with charged particles).</li>
+      </ul>
+
+      <h3>How to use (quick start)</h3>
+      <ol>
+        <li>Open the balancing page and find the <strong>single input field</strong>.</li>
+        <li>Enter data in one of the formats:
+          <ul>
+            <li><code>H2+O2=H2O</code> (traditional form)</li>
+            <li><code>H2,O2,H2O,H2O2</code> (list of substances)</li>
+            <li><code>C,H2,O2,CO,CO2</code> (extended list)</li>
+          </ul>
+        </li>
+        <li>Check syntax: no spaces, indices as numbers (<code>H2</code>, <code>O3</code>, <code>CO2</code>).</li>
+        <li>Click <kbd>Update</kbd> and review results.</li>
+      </ol>
+
+      <h3>What the table shows</h3>
+      <ul>
+        <li><strong>Reaction name</strong> with minimal integer coefficients.</li>
+        <li><strong>Percentage shares</strong> for each substance.</li>
+        <li><strong>Rsum / Psum</strong> — number of substance types among reactants/products.</li>
+        <li><strong>Rmol / Pmol</strong> — total molecular coefficients (number of molecules).</li>
+        <li><strong>Elem</strong> — number of elements involved.</li>
+      </ul>
+
+      <h3>Examples</h3>
+      <pre><code>H2+O2=H2O   → 2H2 + O2 = 2H2O
+H2,O2,H2O,H2O2   → possible: 2H2+O2=2H2O ; H2+O2=H2O2 ; etc.</code></pre>
+
+      <h2>Instructions for using Chemical Predictor in ChatGPT (mini version)</h2>
+
+      <h3>1. First run (full template)</h3>
+      <pre><code>I want you to act as Chemical Predictor (https://cpredictor.icfk.org/balancer.html).
+It has a single input field for reagents or equations.
+After pressing "Update" it shows a table with possible reactions:
+– reaction name
+– percentage composition of reagents and products
+– Rsum, Psum, Rmol, Pmol, Elem.
+Now calculate for: H2,O2,H2O,H2O2</code></pre>
+
+      <h3>2. Hot commands</h3>
+      <pre><code>Chemical Predictor: H2,O2,H2O,H2O2
+Chemical Predictor: H2+O2=H2O</code></pre>
+
+      <h3>3. Useful refinements</h3>
+      <ul>
+        <li>Show only the list of reactions</li>
+        <li>… with relative amounts (%)</li>
+        <li>… where number of reagents < 3</li>
+        <li>… where sum of coefficients < 4</li>
+        <li>Show the reaction basis</li>
+      </ul>
+
+      <h3>4. Examples</h3>
+      <pre><code>Chemical Predictor: H2+O2=H2O
+Chemical Predictor: H2,O2,H2O,H2O2
+Chemical Predictor: C,H2,O2,CO,CO2
+Chemical Predictor: H2,O2,H2O2 – with relative amounts (%)
+Chemical Predictor: C,O2,CO,CO2 – only reactions with ≤2 reagents
+Chemical Predictor: H2,O2,CO,CO2,CH3OH – show reaction basis</code></pre>
+
+      <p><strong>Tip:</strong> For <code>H2,O2,CO,CO2,CH3OH</code> all reactions can be built from two basics:
+      1) <code>O2 + 2CO → 2CO2</code> ; 2) <code>CO + 2H2 → CH3OH</code></p>
+    </div>
+
+    <!-- Ukrainian column -->
+    <div class="col">
+      <h2><strong>Chemical Predictor</strong>: про сервіс та як ним користуватися</h2>
+
+      <p><strong>Що це?</strong> <em>Chemical Predictor</em> — онлайн-сервіс, який <strong>повністю реалізує векторний підхід</strong> до балансування хімічних рівнянь.
+      Алгоритм <strong>математично обґрунтований</strong> і базується на <strong>матричній алгебрі</strong>, що дозволяє знаходити <u>всі</u> можливі унікальні (неповторювані, лінійно-незалежні) збалансовані реакції.</p>
+
+      <h3>Ключові можливості</h3>
+      <ul>
+        <li>Необмежена кількість реагентів з обох боків (ліміт — продуктивність браузера/JS).</li>
+        <li>Необмежена кількість елементів (у т.ч. вигаданих).</li>
+        <li>Паралельний розрахунок багатьох реакційних систем.</li>
+        <li>Пошук <strong>усіх</strong> можливих <strong>унікальних</strong> рішень без повторів і лінійної залежності.</li>
+        <li>Підтримка <strong>електрохімічних</strong> рівнянь (із зарядовими частинками).</li>
+      </ul>
+
+      <h3>Як користуватися (швидкий старт)</h3>
+      <ol>
+        <li>Відкрийте сторінку балансування та знайдіть <strong>єдине поле вводу</strong>.</li>
+        <li>Уведіть дані в одному з форматів:
+          <ul>
+            <li><code>H2+O2=H2O</code> (традиційна форма)</li>
+            <li><code>H2,O2,H2O,H2O2</code> (список речовин)</li>
+            <li><code>C,H2,O2,CO,CO2</code> (розширений список)</li>
+          </ul>
+        </li>
+        <li>Перевірте синтаксис: без пробілів, індекси — цифрами (<code>H2</code>, <code>O3</code>, <code>CO2</code>).</li>
+        <li>Натисніть <kbd>Update</kbd> та перегляньте результат.</li>
+      </ol>
+
+      <h3>Що показує таблиця</h3>
+      <ul>
+        <li><strong>Назва реакції</strong> у стандартному вигляді з мінімальними цілими коефіцієнтами.</li>
+        <li><strong>Відсоткові частки</strong> для кожної речовини.</li>
+        <li><strong>Rsum / Psum</strong> — кількість типів речовин серед реагентів/продуктів.</li>
+        <li><strong>Rmol / Pmol</strong> — сумарні молекулярні коефіцієнти (кількість молекул).</li>
+        <li><strong>Elem</strong> — кількість елементів, що беруть участь.</li>
+      </ul>
+
+      <h3>Приклади</h3>
+      <pre><code>H2+O2=H2O   → 2H2 + O2 = 2H2O
+H2,O2,H2O,H2O2   → можливі: 2H2+O2=2H2O ; H2+O2=H2O2 ; тощо.</code></pre>
+
+      <h2>Інструкція з використання Chemical Predictor у ChatGPT (міні-версія)</h2>
+
+      <h3>1. Перший запуск (повний шаблон)</h3>
+      <pre><code>Я хочу, щоб ти працював як Chemical Predictor (https://cpredictor.icfk.org/balancer.html).
+У ньому є одне поле для введення реагентів або рівнянь.
+Після натискання "Update" він показує таблицю з можливими реакціями:
+– назва реакції
+– відсотковий склад реагентів і продуктів
+– Rsum, Psum, Rmol, Pmol, Elem.
+Тепер розрахуй для: H2,O2,H2O,H2O2</code></pre>
+
+      <h3>2. Гарячі команди</h3>
+      <pre><code>Chemical Predictor: H2,O2,H2O,H2O2
+Chemical Predictor: H2+O2=H2O</code></pre>
+
+      <h3>3. Корисні уточнення</h3>
+      <ul>
+        <li>Виведи тільки список реакцій</li>
+        <li>… з відносними кількостями (%)</li>
+        <li>… де кількість реагентів < 3</li>
+        <li>… де сума коефіцієнтів < 4</li>
+        <li>Виведи базис реакцій</li>
+      </ul>
+
+      <h3>4. Приклади</h3>
+      <pre><code>Chemical Predictor: H2+O2=H2O
+Chemical Predictor: H2,O2,H2O,H2O2
+Chemical Predictor: C,H2,O2,CO,CO2
+Chemical Predictor: H2,O2,H2O2 – з відносними кількостями (%)
+Chemical Predictor: C,O2,CO,CO2 – тільки реакції з ≤2 реагентами
+Chemical Predictor: H2,O2,CO,CO2,CH3OH – покажи базис реакцій</code></pre>
+
+      <p><strong>Порада:</strong> Для <code>H2,O2,CO,CO2,CH3OH</code> усі реакції можна побудувати з двох базових:
+      1) <code>O2 + 2CO → 2CO2</code> ; 2) <code>CO + 2H2 → CH3OH</code></p>
+    </div>
+  </div>
+</body>
+</html>

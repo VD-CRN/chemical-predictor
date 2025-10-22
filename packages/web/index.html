@@ -1,0 +1,189 @@
+<html>
+<!-- ****************************************************** -->
+<head>
+<title>Хімічний предиктор. Урівнювання реакцій</title>
+<meta http-equiv="content-type" content="text/html" charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style> @media only screen and (max-width: 80em) { body { transform: scale(1.8); transform-origin: top left; }
+		@media only screen and (max-width: 80em) and (max-resolution: 2.2dppx) { body { transform: scale(1.2); transform-origin: top left; }
+}</style>
+	
+	<!-- ++++++++++++++++++++++ JS функції ++++++++++++  -->
+	<!-- script>
+	//виведення HTML тексту, для багатострочного тексту необхідні зворотні кавички ``
+	function to_html(a){ document.write(a.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;").replace(/'/g,"&apos;"));}
+	function i_t(name,txt) {document.getElementById(name).innerHTML = txt;}
+	function a_t(name,txt) {alert(name+txt);}
+	function a_a(name,Arr) {alert(name+'\n'+t_a(Arr));}
+	function t_a(array, delimiters = ['\n', ' : ', ' _ ', ' | ', ' ! ']) {
+	  if (!Array.isArray(array)) return String(array);
+	  const delimiter = delimiters[0] || ''; // Використовуємо перший роздільник
+	  const rest = delimiters.slice(1);      // Інші роздільники
+	  return array.map(subArray => t_a(subArray, rest.length > 0 ? rest : [delimiter])).join(delimiter || '');
+	}
+	function out_byID (ID,text){document.getElementById(ID).innerHTML = text;}
+	function delay_(){for(let i=0; i<100000; i++)document.getElementById('cur_state').innerHTML = i;}
+	function debug_w(message){const newWindow = window.open('debug.php?message='+message, '_blank', 'width=600,height=400,top=100,left=100,resizable=yes' );}
+	</script -->
+	<script src="general_fun.js"></script>
+	<script src="chem_vars.js"></script>
+	<script src="chem_parser.js"></script>
+	<script src="chem_balancer.js"></script>
+	<!-- +++++++++++++++++++++ стилі ++++++++++++++++++ -->
+	<style>
+		.example {
+			background-color: powderblue;
+			border: 2px solid powderblue;}
+		
+		.output-container {
+			width: 100%;  height: 65vh;  overflow-y: auto; /* Enable vertical scrolling */
+			border: 1px solid #ccc; 	padding: 10px;	box-sizing: border-box; 	background-color: #f4f4f4;
+		}
+
+         /* Колір і нахил для елементів зі статусом "yes" та "no" */
+        option[data-status="yes"] {   color: green;     font-style: italic;    }
+        option[data-status="no"] {   color: red;        font-style: normal;   }
+		
+		/* Елементи таблиці */
+		td { /*border: 2px solid powderblue;*/ 	width: 40px;	text-align: right;	}
+		td:first-child {	text-align: left; }
+		td:nth-child(n+2) {	text-align: center;	}
+		thead { height: 10px; 	background-color: #e4e4e4;		overflow: hidden;	}	
+		tr:nth-child(n+10) { background-color: #e4e4e4; }
+		
+	</style>
+
+</head>
+<!-- ******************************************************onload="f(document.getElementById("o_CrOx");" -->
+<body>
+
+<div style="display: inline-flex; align-items: center;">
+    <img src="balancer_qr.png" alt="QR Chemical Predictor" style="width:60px; height:60px; border:1px solid #ccc;"/>
+		<p style="margin: 0; margin-right: 10px;">&nbsp&nbsp
+        <a href="#" onclick="switchLanguage('en')">EN</a> | <a href="#" onclick="switchLanguage('ua')">UA</a>
+	</p>
+		<h2 id="title" style="margin: 0;">Хімічний предиктор.Реакції</h2>
+	    <p style="margin: 0; margin-right: 10px;">&nbsp&nbsp&nbsp
+        <a  id="short_info" href="balancer_info.html" > Коротка інструкція</a>
+		</p>	
+</div>
+
+
+<form onchange="update();" onsubmit="event.preventDefault(); update();"> 
+	<button type="button" id="btnUpdate" onclick="update();">Оновити</button>
+	<button type="button" id="btnClear" onclick="clear_();">Очистити</button>
+	-
+	<!-- Випадаючий список "Приклади" -->
+    <select id="display-select" onchange="samples(this.value);this.value = '';">
+		<option id="optnSamples" value="" disabled selected hidden>Приклади</option> <!-- Заглушка -->
+        <option id="optnSample1" value="example1">Реакції утворення</option>
+        <option id="optnSample2" value="example2">Реакції розпаду</option>
+        <option id="optnSample3" value="example3">Синтаксис</option>
+        <option id="optnSample4" value="example4">Реакцій для ВР</option>
+		 <!-- option value="example5">Різні</option -->
+	</select>
+ 
+    <!-- Список "Додаткові дії " -- >
+    <select id="examples-select" onchange="actions(); this.value = '';">
+		<option value="" disabled selected hidden>Додаткові дії </option> <!-- Заглушка -- >
+        <option value="act_equr" data-status="yes">Видалити однакові</option>
+        <option value="act_invr" data-status="yes">Видалити зворотні реакції</option>
+        <!-- option value="act_rstat" data-status="yes">Відсортувати</option -->
+		<!-- option value="expl_rstat" data-status="yes">Привести коефіцієнти</option -- >
+    </select -->
+	
+	<input type="checkbox" id="equ_reag" onclick="update();" /> <span id="chbEquReag">Скоротити реагенти</span>
+	<input type="checkbox" id="inv_react" onclick="update();" /> <span id="chbInvReact">Скоротити зворотні </span>
+	<input type="checkbox" id="sort_react" onclick="update();" /> <span id="chbSortReact">Сортувати </span>
+	<input type="checkbox" id="int_react" onclick="update();" />  <span id="chbIntReact">Цілі </span>
+	<input type="checkbox" id="wide_stat" onclick="update();" />  <span id="chbWideStat">Статистика</span>
+	
+    <!-- Список "Сортувати " -- >
+    <select id="examples-select" onchange="sort(); this.value = '';">
+		<option value="" disabled selected hidden>Сортувати </option> <!-- Заглушка -- >
+        <option value="sort_no" data-status="yes">Довільно</option>
+        <option value="sort_1" data-status="yes">Молекул<Реактантів>Елементів</option>
+		<option value="sort_2" data-status="yes">Молекул<Реактантів<Елементів</option>
+     </select -->
+
+
+    <!-- Список "виведення" -- >
+    <select id="examples-select" onchange="update(); this.value = '';">
+		<option value="" disabled selected hidden>Виведення</option> <!-- Заглушка -- >
+        <option value="expl_rlist" data-status="yes">Реакції</option>
+        <option value="expl_rtable" data-status="yes">Коефіцієнти</option>
+        <option value="expl_rstat" data-status="no">Статистика</option>
+		<option value="expl_rstat" data-status="no">Маси</option>
+    </select -->
+
+
+	<br>
+	<textarea name="reagents" id="reactions" rows="5" style="width: 100%; background-color: #f0f8ff; font-family: inherit; font-size: inherit;"></textarea>  
+	<br>
+	<!-- Додаткові символи -->
+	<!-- div id="insert-buttons"></div>
+	< br>
+	<output name="reactions" id="cur_state">0.0</output -->  
+	<div class="output-container" id="reactions-output">	
+    </div>
+</form>
+
+<span id="copyright">
+<b> © 2024 EPFL, NURE, all rights reserved <br>
+Спільний проект  ХНУРЕ(Україна,Харків)та EPFL(Швейцарія,Лозана)<br>
+Автори: <a href="https://nure.ua/en/staff/pavlo-kozub">Козуб Павло</a>, <a href="https://people.epfl.ch/nataliia.miroshnichenko?lang=en">Їлмаз Наталля</a></b>
+<br>
+</span>
+
+<!-- ******************************************************onload="f(document.getElementById("o_CrOx");" -->
+<script>
+
+document.getElementById('equ_reag').checked=true;	
+document.getElementById('inv_react').checked=true;
+document.getElementById('sort_react').checked=true;
+document.getElementById('int_react').checked=true;
+
+document.getElementById('wide_stat').checked=true;
+
+switchLanguage('en');
+//generateButtons();
+clear_();
+
+function update(){
+	main_Balancer();
+}
+	
+function clear_() {
+		const textarea = document.querySelector('textarea[name="reagents"]');
+		textarea.value = '';
+		textarea.placeholder = sample_0[CurLang];
+		update();
+}
+
+function insertAtCursor(textToInsert) {
+    const textarea = document.getElementById('reactions');
+
+    // Отримуємо позиції курсора
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+
+    // Розділяємо текст на частини
+    const before = textarea.value.substring(0, start);
+    const after = textarea.value.substring(end);
+
+    // Формуємо новий текст із вставкою
+    textarea.value = before + textToInsert + after;
+
+    // Переміщуємо курсор після вставленого тексту
+    textarea.selectionStart = textarea.selectionEnd = start + textToInsert.length;
+
+    // Фокус на текстовому полі
+    textarea.focus();
+}
+</script>
+
+<iframe src="CNT/counter.php?name=cpredictor" style="border:none;"></iframe>
+<a href="CNT/counter_stat_city.php">**</a>
+
+</body>
+</html>
