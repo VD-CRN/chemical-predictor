@@ -1,5 +1,6 @@
 # 🧪 Chemical Predictor (VD-CRN Project)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17400683.svg)](https://doi.org/10.5281/zenodo.17400683)
+![CI](https://github.com/VD-CRN/chemical-predictor/actions/workflows/static.yml/badge.svg)
 
 **Open-source platform for vector-based stoichiometry and chemical reaction network generation**  
 Developed as part of the *Vector-Based Chemical Reaction Network (VD-CRN)* initiative  
@@ -10,7 +11,7 @@ the **Kharkiv National University of Radio Electronics (NURE)**.
 
 ## 🌍 Overview
 The **Chemical Predictor** is a scientific software framework that provides:
-- automated balancing of chemical reactions using a **vector algebraic approach**;
+- automated balancing of chemical reactions using a **vector-based approach**;
 - generation of **complete and non-redundant** reaction networks for multicomponent systems;
 - compatibility with modern CRN tools such as **Cantera**, **CHEMKIN**, and **RMG**;
 - fully reproducible computational experiments for research and education.
@@ -51,11 +52,12 @@ pip install -r requirements.txt
 ---
 
 ## 🧬 Scientific background
-The algorithm is based on the **Vector-Based Stoichiometry Method (VA-CRN)**  
+The algorithm is based on the **A Vector-Based Approach to the Development of Stoichiometrically Consistent Chemical Reaction Networks (VD-CRN)**,  
 developed by *Nataliia Yilmaz* (EPFL) and *Pavlo Kozub* (NURE).  
 It reconstructs chemical reaction systems through linear-algebraic transformations  
-of element composition vectors — a mathematically rigorous approach to reaction analysis  
-that can generate **all possible valid reaction sets** for given components.
+of element-composition vectors, ensuring **stoichiometric consistency**  
+across all generated networks and enabling the exploration of **all valid reaction sets**  
+for any given combination of components.
 
 ---
 
@@ -70,21 +72,21 @@ that can generate **all possible valid reaction sets** for given components.
 ## 📖 Citation
 If you use this software, please cite it as:
 
-> Kozub P., Yilmaz N. *Chemical Predictor (VA-CRN Project):  
-> Vector-Based Chemical Reaction Network Generator*,  
+> Kozub P., Yilmaz N. *Chemical Predictor (VD-CRN Project):  
+> A Vector-Based Approach to the Development of Stoichiometrically Consistent Chemical Reaction Networks.*  
 > GitHub: [https://github.com/VD-CRN/chemical-predictor](https://github.com/VD-CRN/chemical-predictor), 2025.  
-> DOI (via Zenodo): *to be assigned.*
+> DOI: [10.5281/zenodo.17400683](https://doi.org/10.5281/zenodo.17400683)
 
 ---
 
 ## 📘 CITATION.cff
-```
+```yaml
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "Chemical Predictor (VA-CRN): Vector-Based Chemical Reaction Network Generator"
+title: "Chemical Predictor (VD-CRN): A Vector-Based Approach to the Development of Stoichiometrically Consistent Chemical Reaction Networks"
 version: 1.0.0
 date-released: 2025-10-20
-doi: 10.5281/zenodo.pending
+doi: 10.5281/zenodo.17400683
 authors:
   - family-names: Kozub
     given-names: Pavlo
@@ -92,13 +94,15 @@ authors:
     orcid: "https://orcid.org/0000-0002-7162-027X"
   - family-names: Yilmaz
     given-names: Nataliia
-    affiliation: "École Polytechnique Fédérale de Lausanne (EPFL)"
+    affiliation: "EPFL, School of Basic Sciences, Laboratory of Combustion and Energy Systems"
+    orcid: "https://orcid.org/0000-0002-0561-4138"
 repository-code: "https://github.com/VD-CRN/chemical-predictor"
 license: Apache-2.0
 keywords:
-  - vector-based stoichiometry
+  - vector-based approach
+  - stoichiometric consistency
   - chemical reaction networks
-  - VA-CRN
+  - VD-CRN
   - computational chemistry
   - EPFL
 ```
@@ -107,12 +111,12 @@ keywords:
 
 ## ⚖️ License
 This project is distributed under the **Apache License 2.0**.  
-© 2025 École Polytechnique Fédérale de Lausanne (EPFL) and contributors.
+© 2025 **VD-CRN Initiative (EPFL & NURE)** and contributors.
 
 ---
 
 ## 🧩 Maintainers
-- **Pavlo Kozub** — `@pkozub-git`  
-- **Nataliia Yilmaz** — `@nataliyilmaz` (EPFL)  
+- **Pavlo Kozub** — [@pkozub-git](https://github.com/pkozub-git)  
+- **Nataliia Yilmaz** — [@nataliiayilmaz](https://github.com/nataliiayilmaz) (EPFL)  
 
 For collaboration or contribution requests, please open an **Issue** or contact the maintainers directly.
