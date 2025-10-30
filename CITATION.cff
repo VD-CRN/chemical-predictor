@@ -9,10 +9,11 @@ authors:
     given-names: Pavlo
     affiliation: "Kharkiv National University of Radio Electronics (NURE)"
     orcid: "https://orcid.org/0000-0002-7162-027X"
+
   - family-names: Yilmaz
     given-names: Nataliia
-    affiliation: "École Polytechnique Fédérale de Lausanne (EPFL)"
-repository-code: "https://github.com/VD-CRN/chemical-predictor"
+    affiliation: "EPFL, School of Basic Sciences, Laboratory of Combustion and Energy Systems"
+    orcid: "https://orcid.org/0000-0002-0561-4138"
 license: Apache-2.0
 keywords:
   - vector-based stoichiometry
