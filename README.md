@@ -60,10 +60,10 @@ that can generate **all possible valid reaction sets** for given components.
 ---
 
 ## 👩‍🔬 Authors and contributors
-| Name | Affiliation | Role |
-|------|--------------|------|
-| **Nataliia Yilmaz** | EPFL | Principal Investigator |
-| **Pavlo Kozub** | NURE | Algorithm design, core development |
+| Name | Affiliation | Role | GitHub |
+|------|--------------|------|--------|
+| **Nataliia Yilmaz** | EPFL, School of Basic Sciences, Laboratory of Combustion and Energy Systems | Principal Investigator | [@nataliiayilmaz](https://github.com/nataliiayilmaz) |
+| **Pavlo Kozub** | Kharkiv National University of Radio Electronics (NURE) | Algorithm design, core development | [@pkozub-git](https://github.com/pkozub-git) |
 
 ---
 
